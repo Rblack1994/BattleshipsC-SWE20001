@@ -252,12 +252,20 @@ static class UtilityFunctions
 
 			SwinGame.DrawFramerate(675, 585, GameResources.GameFont("CourierSmall"));
 	}
-
+	/// <summary>
+	/// add's an explosion animation to the game screen , takes parameters for row and column on game board
+	/// </summary>
+	/// <param name="row">Row.</param>
+	/// <param name="col">Col.</param>
 	public static void AddExplosion(int row, int col)
 	{
 		AddAnimation(row, col, "Splash");
 	}
-
+		/// <summary>
+		/// add's an splash animation to the game screen , takes parameters for row and column on game board
+		/// </summary>
+		/// <param name="row">Row.</param>
+		/// <param name="col">Col.</param>
 	public static void AddSplash(int row, int col)
 	{
 		AddAnimation(row, col, "Splash");
@@ -283,7 +291,9 @@ static class UtilityFunctions
 		s.StartAnimation("splash");
 		_Animations.Add(s);
 	}
-
+		/// <summary>
+		/// Updates the animations in the battleships game.
+		/// </summary>
 	public static void UpdateAnimations()
 	{
 		List<Sprite> ended = new List<Sprite>();
@@ -299,14 +309,18 @@ static class UtilityFunctions
 			SwinGame.FreeSprite(s);
 		}
 	}
-
+		/// <summary>
+		/// Draws the sprites in the battleships window.
+		/// </summary>
 	public static void DrawAnimations()
 	{
 		foreach (Sprite s in _Animations) {
 			SwinGame.DrawSprite(s);
 		}
 	}
-
+		/// <summary>
+		/// Draws the animation sequence.
+		/// </summary>
 	public static void DrawAnimationSequence()
 	{
 		int i = 0;
