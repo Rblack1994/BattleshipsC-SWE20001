@@ -6,7 +6,7 @@ using System.Collections.Generic;
 // //using System.Data;
 using System.Diagnostics;
 /// <summary>
-/// The different AI levels.
+/// A simple enum used to define the different AI levels.
 /// </summary>
 namespace Battleships
 {
