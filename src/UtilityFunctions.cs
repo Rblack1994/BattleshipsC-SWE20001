@@ -44,7 +44,7 @@ static class UtilityFunctions
 	private static readonly Color MESSAGE_COLOR = SwinGame.RGBAColor(2, 167, 252, 255);
 	public const int ANIMATION_CELLS = 7;
 
-	public const int FRAMES_PER_CELL = 8;
+	public const int FRAMES_PER_CELL = 4;
 	/// <summary>
 	/// Determines if the mouse is in a given rectangle.
 	/// </summary>
@@ -59,6 +59,7 @@ static class UtilityFunctions
 		bool result = false;
 
 		mouse = SwinGame.MousePosition();
+
 
 		//if the mouse is inline with the button horizontally
 		if (mouse.X >= x & mouse.X <= x + w) {
@@ -184,14 +185,14 @@ static class UtilityFunctions
 				continue;
 			rowTop = top + (cellGap + cellHeight) * s.Row + SHIP_GAP;
 			colLeft = left + (cellGap + cellWidth) * s.Column + SHIP_GAP;
-
+				int j = (int)GameController.CurrentShipColour;
 			if (s.Direction == Direction.LeftRight) {
-				shipName = "ShipLR" + s.Size;
+					shipName = "ShipLR" + s.Size+ "a" + j;
 				shipHeight = cellHeight - (SHIP_GAP * 2);
 				shipWidth = (cellWidth + cellGap) * s.Size - (SHIP_GAP * 2) - cellGap;
 			} else {
 				//Up down
-				shipName = "ShipUD" + s.Size;
+					shipName = "ShipUD" + s.Size + "a" + j;
 				shipHeight = (cellHeight + cellGap) * s.Size - (SHIP_GAP * 2) - cellGap;
 				shipWidth = cellWidth - (SHIP_GAP * 2);
 			}
@@ -259,7 +260,7 @@ static class UtilityFunctions
 	/// <param name="col">Col.</param>
 	public static void AddExplosion(int row, int col)
 	{
-		AddAnimation(row, col, "Splash");
+		AddAnimation(row, col, "Explosion");
 	}
 		/// <summary>
 		/// add's an splash animation to the game screen , takes parameters for row and column on game board

@@ -19,6 +19,7 @@ public static class GameController
 
 	private static BattleShipsGame _theGame;
 	private static Player _human;
+	private static ShipColour _shipColour = ShipColour.Blue;
 
 	private static AIPlayer _ai;
 
@@ -33,6 +34,27 @@ public static class GameController
 	/// <returns>The current state</returns>
 	public static GameState CurrentState {
 		get { return _state.Peek(); }
+	}
+	
+	public static ShipColour CurrentShipColour
+	{
+		get{ return _shipColour;}
+		set{ _shipColour = value;}
+	}
+	
+	// display difficulty in game
+	public static string AiGameSetting()
+	{
+		switch (_aiSetting)
+		{
+			case AIOption.Easy:
+				return "Easy AI";
+			case AIOption.Medium:
+				return "Medium AI";
+			case AIOption.Hard:
+				return "Hard AI";
+		}
+			return "";
 	}
 
 	/// <summary>
