@@ -20,6 +20,17 @@ public static class GameResources
 		NewFont("Menu", "ffaccess.ttf", 8);
 	}
 
+	private static void LoadSounds()
+	{
+		NewSound("Error", "error.wav");
+		NewSound("Hit", "hit.wav");
+		NewSound("Sink", "sink.wav");
+		NewSound("Siren", "siren.wav");
+		NewSound("Miss", "watershot.wav");
+		NewSound("Winner", "winner.wav");
+		NewSound("Lose", "lose.wav");
+	}
+
 	private static void LoadImages()
 	{
 		//Backgrounds
@@ -36,9 +47,13 @@ public static class GameResources
 
 		//Ships
 		int i = 0;
+		int j = 1;
 		for (i = 1; i <= 5; i++) {
-			NewImage("ShipLR" + i, "ship_deploy_horiz_" + i + ".png");
-			NewImage("ShipUD" + i, "ship_deploy_vert_" + i + ".png");
+				for (j = 1; j <= 2; j++)
+				{
+					NewImage ("ShipLR" + i + "a" + j, "ship_deploy_horiz_" + i  + "_" + j + ".png");
+					NewImage ("ShipUD" + i + "a" + j, "ship_deploy_vert_" + i   + "_" + j + ".png");
+				}
 		}
 
 		//Explosions
@@ -47,16 +62,7 @@ public static class GameResources
 
 	}
 
-	private static void LoadSounds()
-	{
-		NewSound("Error", "error.wav");
-		NewSound("Hit", "hit.wav");
-		NewSound("Sink", "sink.wav");
-		NewSound("Siren", "siren.wav");
-		NewSound("Miss", "watershot.wav");
-		NewSound("Winner", "winner.wav");
-		NewSound("Lose", "lose.wav");
-	}
+	
 
 	private static void LoadMusic()
 	{
