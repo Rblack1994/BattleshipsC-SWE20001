@@ -35,7 +35,10 @@ public static class GameResources
 	{
 		//Backgrounds
 		NewImage("Menu", "main_page.jpg");
-		NewImage("Discovery", "discover.jpg");
+		NewImage("Discovery_1", "discover_1.jpg");
+			NewImage("Discovery_2", "discover_2.jpg");
+			NewImage("Discovery_3", "discover_3.jpg");
+			NewImage("Discovery_4", "discover_4.jpg");
 		NewImage("Deploy", "deploy.jpg");
 
 		//Deployment
@@ -44,6 +47,7 @@ public static class GameResources
 		NewImage("SelectedShip", "deploy_button_hl.png");
 		NewImage("PlayButton", "deploy_play_button.png");
 		NewImage("RandomButton", "deploy_randomize_button.png");
+			NewImage("PaintButton", "deploy_paint_button.png");
 
 		//Ships
 		int i = 0;

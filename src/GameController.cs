@@ -36,11 +36,7 @@ public static class GameController
 		get { return _state.Peek(); }
 	}
 	
-	public static ShipColour CurrentShipColour
-	{
-		get{ return _shipColour;}
-		set{ _shipColour = value;}
-	}
+	
 	
 	// display difficulty in game
 	public static string AiGameSetting()
