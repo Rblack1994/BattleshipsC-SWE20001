@@ -52,7 +52,7 @@ static class UtilityFunctions
 
 	private static readonly Color MESSAGE_COLOR = SwinGame.RGBAColor(2, 167, 252, 255);
 	public const int ANIMATION_CELLS = 7;
-
+		private static int _currentBackground = 1;
 
 		public static KeyCode KeyTyped (KeyCode oldcode)
 		{
@@ -206,7 +206,7 @@ static class UtilityFunctions
 				continue;
 			rowTop = top + (cellGap + cellHeight) * s.Row + SHIP_GAP;
 			colLeft = left + (cellGap + cellWidth) * s.Column + SHIP_GAP;
-				//int j = (int)GameController.CurrentShipColour;
+				int j = (int)s.CurrentShipColour;
 			if (s.Direction == Direction.LeftRight) {
 					shipName = "ShipLR" + s.Size+ "a" + j;
 				shipHeight = cellHeight - (SHIP_GAP * 2);
@@ -227,6 +227,15 @@ static class UtilityFunctions
 		}
 	}
 
+		public static void ChangeBackground()
+		{
+			if (_currentBackground >= 4)
+			{
+				_currentBackground = 1;
+			}
+			else
+				_currentBackground++;
+		}
 
 	private static string _message;
 	/// <summary>
@@ -263,7 +272,7 @@ static class UtilityFunctions
 				break;
 			case GameState.Discovering:
 			case GameState.EndingGame:
-				SwinGame.DrawBitmap(GameResources.GameImage("Discovery"), 0, 0);
+				SwinGame.DrawBitmap(GameResources.GameImage("Discovery_"+_currentBackground.ToString()), 0, 0);
 				//SwinGame.DrawText(GameController.CurrentState.ToString(),Color.Red,300,100);
 				break;
 			case GameState.Deploying:

@@ -35,6 +35,10 @@ static class DiscoveryController
 		if (SwinGame.MouseClicked(MouseButton.LeftButton)) {
 			DoAttack();
 		}
+			if (SwinGame.KeyTyped (KeyCode.vk_b))
+			{
+				UtilityFunctions.ChangeBackground ();
+			}
 	}
 
 	/// <summary>
