@@ -28,7 +28,8 @@ static class MenuController
 			"PLAY",
 			"SETUP",
 			"SCORES",
-			"QUIT"
+			"QUIT",
+			"HOTKEYS"
 		},
 		new string[] {
 			"RETURN",
@@ -60,6 +61,7 @@ static class MenuController
 	private const int MAIN_MENU_TOP_SCORES_BUTTON = 2;
 
 	private const int MAIN_MENU_QUIT_BUTTON = 3;
+	private const int MAIN_MENU_HOTKEYS_BUTTON = 4;
 	private const int SETUP_MENU_EASY_BUTTON = 0;
 	private const int SETUP_MENU_MEDIUM_BUTTON = 1;
 	private const int SETUP_MENU_HARD_BUTTON = 2;
@@ -79,6 +81,10 @@ static class MenuController
 	{
 		HandleMenuInput(MAIN_MENU, 0, 0);
 	}
+
+	/// <summary>
+	/// Handles the  processing of user input when the quit menu is showing
+	/// </summary>
 	public static void HandleQuitMenuInput()
 	{
 			if (SwinGame.MouseClicked (MouseButton.LeftButton))
@@ -87,6 +93,52 @@ static class MenuController
 					GameController.AddNewState (GameState.ViewingMainMenu);
 				if (SwinGame.PointInRect (SwinGame.MousePosition (), SwinGame.ScreenWidth () / 2 - 70, 400, 50, 25))
 					GameController.AddNewState (GameState.Quitting);
+			}
+	}
+
+	/// <summary>
+	/// Handles the  processing of user input when the Hotkeys menu is showing
+	/// </summary>
+	public static void HandleHotkeysMenuInput()
+	{
+			if (SwinGame.KeyTyped(UtilityFunctions.EscapeKey)) {
+				GameController.SwitchState(GameState.ViewingGameMenu);
+			}
+			if (SwinGame.AnyKeyPressed ())
+			{
+				
+
+				// Escape key
+				if (SwinGame.PointInRect (SwinGame.MousePosition (), SwinGame.ScreenWidth () - 100, 100, 50, 25))
+					UtilityFunctions.EscapeKey = UtilityFunctions.KeyTyped (UtilityFunctions.EscapeKey);
+
+				// Up key
+				if (SwinGame.PointInRect (SwinGame.MousePosition (), SwinGame.ScreenWidth () - 100, 150, 50, 25))
+					UtilityFunctions.UpKey = UtilityFunctions.KeyTyped (UtilityFunctions.UpKey);
+
+				// Down key
+				if (SwinGame.PointInRect (SwinGame.MousePosition (), SwinGame.ScreenWidth () - 100, 200, 50, 25))
+					UtilityFunctions.DownKey = UtilityFunctions.KeyTyped (UtilityFunctions.DownKey);
+
+				// Left key
+				if (SwinGame.PointInRect (SwinGame.MousePosition (), SwinGame.ScreenWidth () - 100, 250, 50, 25))
+					UtilityFunctions.LeftKey = UtilityFunctions.KeyTyped (UtilityFunctions.LeftKey);
+
+				// Random key
+				if (SwinGame.PointInRect (SwinGame.MousePosition (), SwinGame.ScreenWidth () - 100, 300, 50, 25))
+					UtilityFunctions.RandomKey = UtilityFunctions.KeyTyped (UtilityFunctions.RandomKey);
+
+				// Blue key
+				if (SwinGame.PointInRect (SwinGame.MousePosition (), SwinGame.ScreenWidth () - 100, 350, 50, 25))
+					UtilityFunctions.BlueKey = UtilityFunctions.KeyTyped (UtilityFunctions.BlueKey);
+
+				// Pink key
+				if (SwinGame.PointInRect (SwinGame.MousePosition (), SwinGame.ScreenWidth () - 100, 400, 50, 25))
+					UtilityFunctions.PinkKey = UtilityFunctions.KeyTyped (UtilityFunctions.PinkKey);
+
+				// Cheats key
+				if (SwinGame.PointInRect (SwinGame.MousePosition (), SwinGame.ScreenWidth () - 100, 450, 50, 25))
+					UtilityFunctions.CheatsKey = UtilityFunctions.KeyTyped (UtilityFunctions.CheatsKey);
 			}
 	}
 
@@ -123,7 +175,7 @@ static class MenuController
 	/// <returns>false if a clicked missed the buttons. This can be used to check prior menus.</returns>
 	private static bool HandleMenuInput(int menu, int level, int xOffset)
 	{
-		if (SwinGame.KeyTyped(KeyCode.vk_ESCAPE)) {
+		if (SwinGame.KeyTyped(UtilityFunctions.EscapeKey)) {
 			GameController.EndCurrentState();
 			return true;
 		}
@@ -153,9 +205,39 @@ static class MenuController
 	public static void DrawMainMenu()
 	{
 		//Clears the Screen to Black
-			SwinGame.DrawText ("Main Menu", Color.White, 50, 50);
+			//SwinGame.DrawText ("Main Menu", Color.White, 50, 50);
 		DrawButtons(MAIN_MENU);
 	}
+
+		public static void DrawHotkeysMenu()
+		{
+				// Escape key
+				SwinGame.DrawText ("Escape key", Color.AntiqueWhite, SwinGame.ScreenWidth () - 200, 100);
+				SwinGame.DrawText (UtilityFunctions.EscapeKey.ToString(), Color.White, SwinGame.ScreenWidth () -100, 100);
+
+				// Up key
+				SwinGame.DrawText ("Up key", Color.AntiqueWhite, SwinGame.ScreenWidth () - 200, 150);
+				SwinGame.DrawText (UtilityFunctions.UpKey.ToString(), Color.White, SwinGame.ScreenWidth () -100, 150);
+
+				// Down key
+				SwinGame.DrawText ("Down key", Color.AntiqueWhite, SwinGame.ScreenWidth () - 200, 200);
+				SwinGame.DrawText (UtilityFunctions.DownKey.ToString(), Color.White, SwinGame.ScreenWidth () -100, 200);
+				// Left key
+				SwinGame.DrawText ("Left key", Color.AntiqueWhite, SwinGame.ScreenWidth () - 200, 250);
+				SwinGame.DrawText (UtilityFunctions.LeftKey.ToString(), Color.White, SwinGame.ScreenWidth () -100, 250);
+				// Random key
+				SwinGame.DrawText ("Random key", Color.AntiqueWhite, SwinGame.ScreenWidth () - 200, 300);
+				SwinGame.DrawText (UtilityFunctions.RandomKey.ToString(), Color.White, SwinGame.ScreenWidth () -100, 300);
+				// Blue key
+				SwinGame.DrawText ("Blue key", Color.AntiqueWhite, SwinGame.ScreenWidth () - 200, 350);
+				SwinGame.DrawText (UtilityFunctions.BlueKey.ToString(), Color.White, SwinGame.ScreenWidth () -100, 350);
+				// Pink key
+				SwinGame.DrawText ("Pink key", Color.AntiqueWhite, SwinGame.ScreenWidth () - 200, 400);
+				SwinGame.DrawText (UtilityFunctions.PinkKey.ToString(), Color.White, SwinGame.ScreenWidth () -100, 400);
+				// Cheats key
+				SwinGame.DrawText ("Cheats key", Color.AntiqueWhite, SwinGame.ScreenWidth () - 200, 450);
+				SwinGame.DrawText (UtilityFunctions.CheatsKey.ToString(), Color.White, SwinGame.ScreenWidth () -100, 450);			
+		}
 
 	public static void DrawQuitMenu()
 	{
@@ -295,6 +377,9 @@ static class MenuController
 				break;
 			case MAIN_MENU_QUIT_BUTTON:
 				GameController.EndCurrentState ();
+				break;
+			case MAIN_MENU_HOTKEYS_BUTTON:
+				GameController.AddNewState (GameState.ChangingHotkeys);
 				break;
 		}
 	}

@@ -21,7 +21,7 @@ static class EndingGameController
 	/// </summary>
 	public static void DrawEndOfGame()
 	{
-			UtilityFunctions.DrawField(GameController.ComputerPlayer.PlayerGrid, GameController.ComputerPlayer, true);
+			UtilityFunctions.DrawField (GameController.ComputerPlayer.PlayerGrid, GameController.ComputerPlayer,true);
 			UtilityFunctions.DrawSmallField(GameController.HumanPlayer.PlayerGrid, GameController.HumanPlayer);
 
 			if (GameController.HumanPlayer.IsDestroyed) {
@@ -38,7 +38,7 @@ static class EndingGameController
 	/// </summary>
 	public static void HandleEndOfGameInput()
 	{
-		if (SwinGame.MouseClicked(MouseButton.LeftButton) || SwinGame.KeyTyped(KeyCode.vk_RETURN) || SwinGame.KeyTyped(KeyCode.vk_ESCAPE)) {
+		if (SwinGame.MouseClicked(MouseButton.LeftButton) || SwinGame.KeyTyped(KeyCode.vk_RETURN) || SwinGame.KeyTyped(UtilityFunctions.EscapeKey)) {
 				HighScoreController.ReadHighScore(GameController.HumanPlayer.Score);
 				GameController.EndCurrentState();
 		}

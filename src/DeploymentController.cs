@@ -51,19 +51,26 @@ static class DeploymentController
 	/// </remarks>
 	public static void HandleDeploymentInput()
 	{
-		if (SwinGame.KeyTyped(KeyCode.vk_ESCAPE)) {
+		if (SwinGame.KeyTyped(UtilityFunctions.EscapeKey)) {
 			GameController.AddNewState(GameState.ViewingGameMenu);
 		}
 
-		if (SwinGame.KeyTyped(KeyCode.vk_UP) | SwinGame.KeyTyped(KeyCode.vk_DOWN)) {
+		if (SwinGame.KeyTyped(UtilityFunctions.UpKey) | SwinGame.KeyTyped(UtilityFunctions.DownKey)) {
 			_currentDirection = Direction.UpDown;
 		}
-		if (SwinGame.KeyTyped(KeyCode.vk_LEFT) | SwinGame.KeyTyped(KeyCode.vk_RIGHT)) {
+		if (SwinGame.KeyTyped(UtilityFunctions.LeftKey) | SwinGame.KeyTyped(UtilityFunctions.LeftKey)) {
 			_currentDirection = Direction.LeftRight;
 		}
 
-		if (SwinGame.KeyTyped(KeyCode.vk_r)) {
+		if (SwinGame.KeyTyped(UtilityFunctions.RandomKey)) {
 				GameController.HumanPlayer.RandomizeDeployment();
+		}
+		// ship colour change keys
+		if (SwinGame.KeyTyped(UtilityFunctions.BlueKey)) {
+				//GameController.CurrentShipColour = ShipColour.Blue;
+		}
+		if (SwinGame.KeyTyped(UtilityFunctions.PinkKey)) {
+				//GameController.CurrentShipColour = ShipColour.Pink;
 		}
 
 

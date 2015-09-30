@@ -57,7 +57,12 @@ public enum GameState
 	/// <summary>
 	/// The player has tried to quit. asks if they are sure
 	/// </summary>
-	Quittingprompt
+	Quittingprompt,
+
+	/// <summary>
+	/// The player is changing the games hotkeys
+	/// </summary>
+	ChangingHotkeys
 }
 }
 //=======================================================
