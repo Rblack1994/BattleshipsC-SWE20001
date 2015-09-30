@@ -29,6 +29,7 @@ static class EndingGameController
 		} else {
 			SwinGame.DrawTextLines("-- WINNER --", Color.White, Color.Transparent, GameResources.GameFont("ArialLarge"), FontAlignment.AlignCenter, 0, 250, SwinGame.ScreenWidth(), SwinGame.ScreenHeight());
 		}
+			System.Threading.Thread.Sleep (2000);
 	}
 
 	/// <summary>

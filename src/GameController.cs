@@ -74,7 +74,7 @@ public static class GameController
 	static GameController()
 	{
 		//bottom state will be quitting. If player exits main menu then the game is over
-		_state.Push(GameState.Quitting);
+		_state.Push(GameState.Quittingprompt);
 
 		//at the start the player is viewing the main menu
 		_state.Push(GameState.ViewingMainMenu);
@@ -294,6 +294,9 @@ public static class GameController
 		SwinGame.ProcessEvents();
 
 		switch (CurrentState) {
+			case GameState.Quittingprompt:
+				MenuController.HandleQuitMenuInput ();
+				break;
 			case GameState.ViewingMainMenu:
 				MenuController.HandleMainMenuInput();
 				break;
@@ -331,6 +334,9 @@ public static class GameController
 		UtilityFunctions.DrawBackground();
 
 		switch (CurrentState) {
+			case GameState.Quittingprompt:
+				MenuController.DrawQuitMenu ();
+				break;
 			case GameState.ViewingMainMenu:
 				MenuController.DrawMainMenu();
 				break;
@@ -385,6 +391,7 @@ public static class GameController
 	/// </summary>
 	public static void EndCurrentState()
 	{
+
 		_state.Pop();
 	}
 
@@ -396,8 +403,9 @@ public static class GameController
 	{
 		_aiSetting = setting;
 	}
+	
 
-}
+	}
 }
 
 //=======================================================

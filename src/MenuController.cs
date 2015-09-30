@@ -52,6 +52,7 @@ static class MenuController
 	private const int TEXT_OFFSET = 0;
 	private const int MAIN_MENU = 0;
 	private const int GAME_MENU = 1;
+	private const int QUIT_MENU = 3;
 
 	private const int SETUP_MENU = 2;
 	private const int MAIN_MENU_PLAY_BUTTON = 0;
@@ -77,6 +78,16 @@ static class MenuController
 	public static void HandleMainMenuInput()
 	{
 		HandleMenuInput(MAIN_MENU, 0, 0);
+	}
+	public static void HandleQuitMenuInput()
+	{
+			if (SwinGame.MouseClicked (MouseButton.LeftButton))
+			{
+				if (SwinGame.PointInRect (SwinGame.MousePosition (), SwinGame.ScreenWidth () / 2 + 70, 400, 50, 25))
+					GameController.AddNewState (GameState.ViewingMainMenu);
+				if (SwinGame.PointInRect (SwinGame.MousePosition (), SwinGame.ScreenWidth () / 2 - 70, 400, 50, 25))
+					GameController.AddNewState (GameState.Quitting);
+			}
 	}
 
 	/// <summary>
@@ -142,9 +153,19 @@ static class MenuController
 	public static void DrawMainMenu()
 	{
 		//Clears the Screen to Black
-		//SwinGame.DrawText("Main Menu", Color.White, GameFont("ArialLarge"), 50, 50)
-
+			SwinGame.DrawText ("Main Menu", Color.White, 50, 50);
 		DrawButtons(MAIN_MENU);
+	}
+
+	public static void DrawQuitMenu()
+	{
+		//Clears the Screen to Black
+			SwinGame.DrawText ("Quit Menu", Color.White, 50, 50);
+			SwinGame.DrawText ("Really Quit ?", Color.White, SwinGame.ScreenWidth()/2, 300);
+			SwinGame.DrawText ("Yes", Color.White, SwinGame.ScreenWidth()/2 - 70, 400);
+			SwinGame.DrawText ("No", Color.White, SwinGame.ScreenWidth()/2 + 70, 400);
+			SwinGame.DrawRectangle (Color.Red,false,SwinGame.ScreenWidth () / 2 - 70, 400, 50, 25);
+			SwinGame.DrawRectangle (Color.Red,false,SwinGame.ScreenWidth () / 2 + 70, 400, 50, 25);
 	}
 
 	/// <summary>
@@ -273,7 +294,7 @@ static class MenuController
 				GameController.AddNewState(GameState.ViewingHighScores);
 				break;
 			case MAIN_MENU_QUIT_BUTTON:
-				GameController.EndCurrentState();
+				GameController.EndCurrentState ();
 				break;
 		}
 	}
@@ -316,7 +337,7 @@ static class MenuController
 				//end game
 				break;
 			case GAME_MENU_QUIT_BUTTON:
-				GameController.AddNewState(GameState.Quitting);
+				GameController.AddNewState(GameState.Quittingprompt);
 				break;
 		}
 	}

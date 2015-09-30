@@ -247,16 +247,20 @@ static class UtilityFunctions
 			case GameState.AlteringSettings:
 			case GameState.ViewingHighScores:
 				SwinGame.DrawBitmap(GameResources.GameImage("Menu"), 0, 0);
+				SwinGame.DrawText(GameController.CurrentState.ToString(),Color.Red,300,100);
 				break;
 			case GameState.Discovering:
 			case GameState.EndingGame:
 				SwinGame.DrawBitmap(GameResources.GameImage("Discovery_"+_currentBackground.ToString()), 0, 0);
+
 				break;
 			case GameState.Deploying:
 				SwinGame.DrawBitmap(GameResources.GameImage("Deploy"), 0, 0);
+				SwinGame.DrawText(GameController.CurrentState.ToString(),Color.Red,300,100);
 				break;
 			default:
 				SwinGame.ClearScreen();
+				SwinGame.DrawText(GameController.CurrentState.ToString(),Color.Red,300,100);
 				break;
 		}
 
