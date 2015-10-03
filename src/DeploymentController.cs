@@ -1,4 +1,4 @@
-
+using System.Windows.Input;
 using Microsoft.VisualBasic;
 using System;
 using System.Collections;
@@ -31,6 +31,7 @@ static class DeploymentController
 
 	private const int LEFT_RIGHT_BUTTON_LEFT = 350;
 	private const int RANDOM_BUTTON_LEFT = 547;
+		private const int PAINT_BUTTON_LEFT = 470;
 
 	private const int RANDOM_BUTTON_WIDTH = 51;
 
@@ -50,20 +51,28 @@ static class DeploymentController
 	/// </remarks>
 	public static void HandleDeploymentInput()
 	{
-		if (SwinGame.KeyTyped(KeyCode.vk_ESCAPE)) {
+		if (SwinGame.KeyTyped(UtilityFunctions.EscapeKey)) {
 			GameController.AddNewState(GameState.ViewingGameMenu);
 		}
 
-		if (SwinGame.KeyTyped(KeyCode.vk_UP) | SwinGame.KeyTyped(KeyCode.vk_DOWN)) {
+		if (SwinGame.KeyTyped(UtilityFunctions.UpKey) | SwinGame.KeyTyped(UtilityFunctions.DownKey)) {
 			_currentDirection = Direction.UpDown;
 		}
-		if (SwinGame.KeyTyped(KeyCode.vk_LEFT) | SwinGame.KeyTyped(KeyCode.vk_RIGHT)) {
+		if (SwinGame.KeyTyped(UtilityFunctions.LeftKey) | SwinGame.KeyTyped(UtilityFunctions.LeftKey)) {
 			_currentDirection = Direction.LeftRight;
 		}
 
-		if (SwinGame.KeyTyped(KeyCode.vk_r)) {
+		if (SwinGame.KeyTyped(UtilityFunctions.RandomKey)) {
 				GameController.HumanPlayer.RandomizeDeployment();
 		}
+		// ship colour change keys
+		if (SwinGame.KeyTyped(UtilityFunctions.BlueKey)) {
+				//GameController.CurrentShipColour = ShipColour.Blue;
+		}
+		if (SwinGame.KeyTyped(UtilityFunctions.PinkKey)) {
+				//GameController.CurrentShipColour = ShipColour.Pink;
+		}
+
 
 		if (SwinGame.MouseClicked(MouseButton.LeftButton)) {
 			ShipName selected = default(ShipName);
@@ -74,16 +83,32 @@ static class DeploymentController
 				DoDeployClick();
 			}
 
-				if (GameController.HumanPlayer.ReadyToDeploy & UtilityFunctions.IsMouseInRectangle(PLAY_BUTTON_LEFT, TOP_BUTTONS_TOP, PLAY_BUTTON_WIDTH, TOP_BUTTONS_HEIGHT)) {
-					GameController.EndDeployment();
-				} else if (UtilityFunctions.IsMouseInRectangle(UP_DOWN_BUTTON_LEFT, TOP_BUTTONS_TOP, DIR_BUTTONS_WIDTH, TOP_BUTTONS_HEIGHT)) {
-				_currentDirection = Direction.LeftRight;
-				} else if (UtilityFunctions.IsMouseInRectangle(LEFT_RIGHT_BUTTON_LEFT, TOP_BUTTONS_TOP, DIR_BUTTONS_WIDTH, TOP_BUTTONS_HEIGHT)) {
-				_currentDirection = Direction.LeftRight;
-			} else if (UtilityFunctions.IsMouseInRectangle(RANDOM_BUTTON_LEFT, TOP_BUTTONS_TOP, RANDOM_BUTTON_WIDTH, TOP_BUTTONS_HEIGHT)) {
-					GameController.HumanPlayer.RandomizeDeployment();
-			}
+				if (GameController.HumanPlayer.ReadyToDeploy & UtilityFunctions.IsMouseInRectangle (PLAY_BUTTON_LEFT, TOP_BUTTONS_TOP, PLAY_BUTTON_WIDTH, TOP_BUTTONS_HEIGHT))
+				{
+					GameController.EndDeployment ();
+				}
+				else if (UtilityFunctions.IsMouseInRectangle (UP_DOWN_BUTTON_LEFT, TOP_BUTTONS_TOP, DIR_BUTTONS_WIDTH, TOP_BUTTONS_HEIGHT))
+				{
+					_currentDirection = Direction.UpDown;
+				}
+				else if (UtilityFunctions.IsMouseInRectangle (LEFT_RIGHT_BUTTON_LEFT, TOP_BUTTONS_TOP, DIR_BUTTONS_WIDTH, TOP_BUTTONS_HEIGHT))
+				{
+					_currentDirection = Direction.LeftRight;
+				}
+				else if (UtilityFunctions.IsMouseInRectangle (RANDOM_BUTTON_LEFT, TOP_BUTTONS_TOP, RANDOM_BUTTON_WIDTH, TOP_BUTTONS_HEIGHT))
+				{
+					GameController.HumanPlayer.RandomizeDeployment ();
+				}
+				else if (UtilityFunctions.IsMouseInRectangle (PAINT_BUTTON_LEFT, TOP_BUTTONS_TOP, RANDOM_BUTTON_WIDTH, TOP_BUTTONS_HEIGHT))
+				{
+						if (GameController.HumanPlayer.Ship (_selectedShip).CurrentShipColour == ShipColour.Pink)
+							GameController.HumanPlayer.Ship (_selectedShip).CurrentShipColour = ShipColour.Blue;
+						else
+							GameController.HumanPlayer.Ship (_selectedShip).CurrentShipColour = ShipColour.Pink;
+				}
 		}
+
+
 	}
 
 	/// <summary>
@@ -103,7 +128,7 @@ static class DeploymentController
 		//Calculate the row/col clicked
 		int row = 0;
 		int col = 0;
-			row = Convert.ToInt32(Math.Floor((mouse.Y) / (UtilityFunctions.CELL_HEIGHT + UtilityFunctions.CELL_GAP)));
+			row = Convert.ToInt32(Math.Floor((mouse.Y - UtilityFunctions.FIELD_TOP) / (UtilityFunctions.CELL_HEIGHT + UtilityFunctions.CELL_GAP)));
 			col = Convert.ToInt32(Math.Floor((mouse.X - UtilityFunctions.FIELD_LEFT) / (UtilityFunctions.CELL_WIDTH + UtilityFunctions.CELL_GAP)));
 
 			if (row >= 0 & row < GameController.HumanPlayer.PlayerGrid.Height) {
@@ -163,6 +188,7 @@ static class DeploymentController
 		}
 
 			SwinGame.DrawBitmap(GameResources.GameImage("RandomButton"), RANDOM_BUTTON_LEFT, TOP_BUTTONS_TOP);
+			SwinGame.DrawBitmap(GameResources.GameImage("PaintButton"), PAINT_BUTTON_LEFT, TOP_BUTTONS_TOP);
 
 			UtilityFunctions.DrawMessage();
 	}

@@ -50,9 +50,19 @@ public enum GameState
 	EndingGame,
 
 	/// <summary>
-	/// The player has quit. Show ending credits and terminate the game
+	/// The player has confirmed quit. Show ending credits and terminate the game
 	/// </summary>
-	Quitting
+	Quitting ,
+
+	/// <summary>
+	/// The player has tried to quit. asks if they are sure
+	/// </summary>
+	Quittingprompt,
+
+	/// <summary>
+	/// The player is changing the games hotkeys
+	/// </summary>
+	ChangingHotkeys
 }
 }
 //=======================================================

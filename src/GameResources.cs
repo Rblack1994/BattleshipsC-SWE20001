@@ -20,33 +20,6 @@ public static class GameResources
 		NewFont("Menu", "ffaccess.ttf", 8);
 	}
 
-	private static void LoadImages()
-	{
-		//Backgrounds
-		NewImage("Menu", "main_page.jpg");
-		NewImage("Discovery", "discover.jpg");
-		NewImage("Deploy", "deploy.jpg");
-
-		//Deployment
-		NewImage("LeftRightButton", "deploy_dir_button_horiz.png");
-		NewImage("UpDownButton", "deploy_dir_button_vert.png");
-		NewImage("SelectedShip", "deploy_button_hl.png");
-		NewImage("PlayButton", "deploy_play_button.png");
-		NewImage("RandomButton", "deploy_randomize_button.png");
-
-		//Ships
-		int i = 0;
-		for (i = 1; i <= 5; i++) {
-			NewImage("ShipLR" + i, "ship_deploy_horiz_" + i + ".png");
-			NewImage("ShipUD" + i, "ship_deploy_vert_" + i + ".png");
-		}
-
-		//Explosions
-		NewImage("Explosion", "explosion.png");
-		NewImage("Splash", "splash.png");
-
-	}
-
 	private static void LoadSounds()
 	{
 		NewSound("Error", "error.wav");
@@ -57,6 +30,43 @@ public static class GameResources
 		NewSound("Winner", "winner.wav");
 		NewSound("Lose", "lose.wav");
 	}
+
+	private static void LoadImages()
+	{
+		//Backgrounds
+		NewImage("Menu", "main_page.jpg");
+		NewImage("Discovery_1", "discover_1.jpg");
+			NewImage("Discovery_2", "discover_2.jpg");
+			NewImage("Discovery_3", "discover_3.jpg");
+			NewImage("Discovery_4", "discover_4.jpg");
+		NewImage("Deploy", "deploy.jpg");
+
+		//Deployment
+		NewImage("LeftRightButton", "deploy_dir_button_horiz.png");
+		NewImage("UpDownButton", "deploy_dir_button_vert.png");
+		NewImage("SelectedShip", "deploy_button_hl.png");
+		NewImage("PlayButton", "deploy_play_button.png");
+		NewImage("RandomButton", "deploy_randomize_button.png");
+			NewImage("PaintButton", "deploy_paint_button.png");
+
+		//Ships
+		int i = 0;
+		int j = 1;
+		for (i = 1; i <= 5; i++) {
+				for (j = 1; j <= 2; j++)
+				{
+					NewImage ("ShipLR" + i + "a" + j, "ship_deploy_horiz_" + i  + "_" + j + ".png");
+					NewImage ("ShipUD" + i + "a" + j, "ship_deploy_vert_" + i   + "_" + j + ".png");
+				}
+		}
+
+		//Explosions
+		NewImage("Explosion", "explosion.png");
+		NewImage("Splash", "splash.png");
+
+	}
+
+	
 
 	private static void LoadMusic()
 	{

@@ -19,6 +19,7 @@ public static class GameController
 
 	private static BattleShipsGame _theGame;
 	private static Player _human;
+	private static ShipColour _shipColour = ShipColour.Blue;
 
 	private static AIPlayer _ai;
 
@@ -33,6 +34,23 @@ public static class GameController
 	/// <returns>The current state</returns>
 	public static GameState CurrentState {
 		get { return _state.Peek(); }
+	}
+	
+	
+	
+	// display difficulty in game
+	public static string AiGameSetting()
+	{
+		switch (_aiSetting)
+		{
+			case AIOption.Easy:
+				return "Easy AI";
+			case AIOption.Medium:
+				return "Medium AI";
+			case AIOption.Hard:
+				return "Hard AI";
+		}
+			return "";
 	}
 
 	/// <summary>
@@ -56,7 +74,7 @@ public static class GameController
 	static GameController()
 	{
 		//bottom state will be quitting. If player exits main menu then the game is over
-		_state.Push(GameState.Quitting);
+		_state.Push(GameState.Quittingprompt);
 
 		//at the start the player is viewing the main menu
 		_state.Push(GameState.ViewingMainMenu);
@@ -276,6 +294,9 @@ public static class GameController
 		SwinGame.ProcessEvents();
 
 		switch (CurrentState) {
+			case GameState.Quittingprompt:
+				MenuController.HandleQuitMenuInput ();
+				break;
 			case GameState.ViewingMainMenu:
 				MenuController.HandleMainMenuInput();
 				break;
@@ -297,6 +318,9 @@ public static class GameController
 			case GameState.ViewingHighScores:
 				HighScoreController.HandleHighScoreInput();
 				break;
+			case GameState.ChangingHotkeys:
+				MenuController.HandleHotkeysMenuInput ();
+				break;
 		}
 
 		UtilityFunctions.UpdateAnimations();
@@ -313,6 +337,9 @@ public static class GameController
 		UtilityFunctions.DrawBackground();
 
 		switch (CurrentState) {
+			case GameState.Quittingprompt:
+				MenuController.DrawQuitMenu ();
+				break;
 			case GameState.ViewingMainMenu:
 				MenuController.DrawMainMenu();
 				break;
@@ -333,6 +360,9 @@ public static class GameController
 				break;
 			case GameState.ViewingHighScores:
 				HighScoreController.DrawHighScores();
+				break;
+			case GameState.ChangingHotkeys:
+				MenuController.DrawHotkeysMenu ();
 				break;
 		}
 
@@ -367,6 +397,7 @@ public static class GameController
 	/// </summary>
 	public static void EndCurrentState()
 	{
+
 		_state.Pop();
 	}
 
@@ -378,8 +409,9 @@ public static class GameController
 	{
 		_aiSetting = setting;
 	}
+	
 
-}
+	}
 }
 
 //=======================================================

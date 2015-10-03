@@ -23,6 +23,7 @@ public class Ship
 	private List<Tile> _tiles;
 	private int _row;
 	private int _col;
+		private ShipColour _shipColour = ShipColour.Blue;
 
 	private Direction _direction;
 	/// <summary>
@@ -49,6 +50,12 @@ public class Ship
 		get { return _sizeOfShip; }
 	}
 
+		public ShipColour CurrentShipColour
+		{
+			get{ return _shipColour;}
+			set{ _shipColour = value;}
+		}
+	
 	/// <summary>
 	/// The number of hits that the ship has taken.
 	/// </summary>
