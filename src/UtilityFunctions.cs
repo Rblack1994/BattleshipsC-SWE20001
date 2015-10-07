@@ -21,6 +21,7 @@ static class UtilityFunctions
 		public static KeyCode BlueKey = KeyCode.vk_b;
 		public static KeyCode PinkKey = KeyCode.vk_p;
 		public static KeyCode CheatsKey = KeyCode.vk_LSHIFT;
+		public static KeyCode MaxKey = KeyCode.vk_F10;
 		public static bool ShowShipsCheat = false;
 
 	public const int FIELD_TOP = 122;

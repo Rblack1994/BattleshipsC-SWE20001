@@ -74,6 +74,11 @@ static class MenuController
 	private static readonly Color MENU_COLOR = SwinGame.RGBAColor(2, 167, 252, 255);
 
 	private static readonly Color HIGHLIGHT_COLOR = SwinGame.RGBAColor(1, 57, 86, 255);
+
+	private const int HOTKEYS_FUNC = 550;  // positioning of function name text
+	private const int HOTKEYS_BIND = 350;   // positioning of key binding name text
+
+
 	/// <summary>
 	/// Handles the processing of user input when the main menu is showing
 	/// </summary>
@@ -109,36 +114,40 @@ static class MenuController
 				
 
 				// Escape key
-				if (SwinGame.PointInRect (SwinGame.MousePosition (), SwinGame.ScreenWidth () - 100, 100, 50, 25))
+				if (SwinGame.PointInRect (SwinGame.MousePosition (), SwinGame.ScreenWidth () - HOTKEYS_BIND, 100, 50, 25))
 					UtilityFunctions.EscapeKey = UtilityFunctions.KeyTyped (UtilityFunctions.EscapeKey);
 
 				// Up key
-				if (SwinGame.PointInRect (SwinGame.MousePosition (), SwinGame.ScreenWidth () - 100, 150, 50, 25))
+				if (SwinGame.PointInRect (SwinGame.MousePosition (), SwinGame.ScreenWidth () - HOTKEYS_BIND, 150, 50, 25))
 					UtilityFunctions.UpKey = UtilityFunctions.KeyTyped (UtilityFunctions.UpKey);
 
 				// Down key
-				if (SwinGame.PointInRect (SwinGame.MousePosition (), SwinGame.ScreenWidth () - 100, 200, 50, 25))
+				if (SwinGame.PointInRect (SwinGame.MousePosition (), SwinGame.ScreenWidth () - HOTKEYS_BIND, 200, 50, 25))
 					UtilityFunctions.DownKey = UtilityFunctions.KeyTyped (UtilityFunctions.DownKey);
 
 				// Left key
-				if (SwinGame.PointInRect (SwinGame.MousePosition (), SwinGame.ScreenWidth () - 100, 250, 50, 25))
+				if (SwinGame.PointInRect (SwinGame.MousePosition (), SwinGame.ScreenWidth () - HOTKEYS_BIND, 250, 50, 25))
 					UtilityFunctions.LeftKey = UtilityFunctions.KeyTyped (UtilityFunctions.LeftKey);
 
 				// Random key
-				if (SwinGame.PointInRect (SwinGame.MousePosition (), SwinGame.ScreenWidth () - 100, 300, 50, 25))
+				if (SwinGame.PointInRect (SwinGame.MousePosition (), SwinGame.ScreenWidth () - HOTKEYS_BIND, 300, 50, 25))
 					UtilityFunctions.RandomKey = UtilityFunctions.KeyTyped (UtilityFunctions.RandomKey);
 
 				// Blue key
-				if (SwinGame.PointInRect (SwinGame.MousePosition (), SwinGame.ScreenWidth () - 100, 350, 50, 25))
+				if (SwinGame.PointInRect (SwinGame.MousePosition (), SwinGame.ScreenWidth () - HOTKEYS_BIND, 350, 50, 25))
 					UtilityFunctions.BlueKey = UtilityFunctions.KeyTyped (UtilityFunctions.BlueKey);
 
 				// Pink key
-				if (SwinGame.PointInRect (SwinGame.MousePosition (), SwinGame.ScreenWidth () - 100, 400, 50, 25))
+				if (SwinGame.PointInRect (SwinGame.MousePosition (), SwinGame.ScreenWidth () - HOTKEYS_BIND, 400, 50, 25))
 					UtilityFunctions.PinkKey = UtilityFunctions.KeyTyped (UtilityFunctions.PinkKey);
 
 				// Cheats key
-				if (SwinGame.PointInRect (SwinGame.MousePosition (), SwinGame.ScreenWidth () - 100, 450, 50, 25))
+				if (SwinGame.PointInRect (SwinGame.MousePosition (), SwinGame.ScreenWidth () - HOTKEYS_BIND, 450, 50, 25))
 					UtilityFunctions.CheatsKey = UtilityFunctions.KeyTyped (UtilityFunctions.CheatsKey);
+
+				// Maximise screen key
+				if (SwinGame.PointInRect (SwinGame.MousePosition (), SwinGame.ScreenWidth () - HOTKEYS_BIND, 450, 50, 25))
+					UtilityFunctions.MaxKey = UtilityFunctions.KeyTyped (UtilityFunctions.MaxKey);
 			}
 	}
 
@@ -211,41 +220,46 @@ static class MenuController
 
 		public static void DrawHotkeysMenu()
 		{
+			SwinGame.DrawText ("Hover over the keybinding to edit", Color.AntiqueWhite, GameResources.GameFont("Menu") ,SwinGame.ScreenWidth () - 550, 25);
+			SwinGame.DrawText ("Function", Color.AntiqueWhite, GameResources.GameFont("Menu"), SwinGame.ScreenWidth () - HOTKEYS_FUNC, 75);
+			SwinGame.DrawText ("Key Bound", Color.AntiqueWhite, GameResources.GameFont("Menu"), SwinGame.ScreenWidth () - HOTKEYS_BIND, 75);
+
 				// Escape key
-				SwinGame.DrawText ("Escape key", Color.AntiqueWhite, SwinGame.ScreenWidth () - 200, 100);
-				SwinGame.DrawText (UtilityFunctions.EscapeKey.ToString(), Color.White, SwinGame.ScreenWidth () -100, 100);
-
-				// Up key
-				SwinGame.DrawText ("Up key", Color.AntiqueWhite, SwinGame.ScreenWidth () - 200, 150);
-				SwinGame.DrawText (UtilityFunctions.UpKey.ToString(), Color.White, SwinGame.ScreenWidth () -100, 150);
-
-				// Down key
-				SwinGame.DrawText ("Down key", Color.AntiqueWhite, SwinGame.ScreenWidth () - 200, 200);
-				SwinGame.DrawText (UtilityFunctions.DownKey.ToString(), Color.White, SwinGame.ScreenWidth () -100, 200);
-				// Left key
-				SwinGame.DrawText ("Left key", Color.AntiqueWhite, SwinGame.ScreenWidth () - 200, 250);
-				SwinGame.DrawText (UtilityFunctions.LeftKey.ToString(), Color.White, SwinGame.ScreenWidth () -100, 250);
-				// Random key
-				SwinGame.DrawText ("Random key", Color.AntiqueWhite, SwinGame.ScreenWidth () - 200, 300);
-				SwinGame.DrawText (UtilityFunctions.RandomKey.ToString(), Color.White, SwinGame.ScreenWidth () -100, 300);
-				// Blue key
-				SwinGame.DrawText ("Blue key", Color.AntiqueWhite, SwinGame.ScreenWidth () - 200, 350);
-				SwinGame.DrawText (UtilityFunctions.BlueKey.ToString(), Color.White, SwinGame.ScreenWidth () -100, 350);
-				// Pink key
-				SwinGame.DrawText ("Pink key", Color.AntiqueWhite, SwinGame.ScreenWidth () - 200, 400);
-				SwinGame.DrawText (UtilityFunctions.PinkKey.ToString(), Color.White, SwinGame.ScreenWidth () -100, 400);
-				// Cheats key
-				SwinGame.DrawText ("Cheats key", Color.AntiqueWhite, SwinGame.ScreenWidth () - 200, 450);
-				SwinGame.DrawText (UtilityFunctions.CheatsKey.ToString(), Color.White, SwinGame.ScreenWidth () -100, 450);			
+				SwinGame.DrawText ("Escape key", Color.AntiqueWhite, SwinGame.ScreenWidth () - HOTKEYS_FUNC, 100);
+				SwinGame.DrawText (UtilityFunctions.EscapeKey.ToString(), Color.White, SwinGame.ScreenWidth () - HOTKEYS_BIND, 100);
+					// Up key
+				SwinGame.DrawText ("Up key", Color.AntiqueWhite, SwinGame.ScreenWidth () - HOTKEYS_FUNC, 150);
+				SwinGame.DrawText (UtilityFunctions.UpKey.ToString(), Color.White, SwinGame.ScreenWidth () - HOTKEYS_BIND, 150);
+					// Down key
+				SwinGame.DrawText ("Down key", Color.AntiqueWhite, SwinGame.ScreenWidth () - HOTKEYS_FUNC, 200);
+				SwinGame.DrawText (UtilityFunctions.DownKey.ToString(), Color.White, SwinGame.ScreenWidth () - HOTKEYS_BIND, 200);
+					// Left key
+				SwinGame.DrawText ("Left key", Color.AntiqueWhite, SwinGame.ScreenWidth () - HOTKEYS_FUNC, 250);
+				SwinGame.DrawText (UtilityFunctions.LeftKey.ToString(), Color.White, SwinGame.ScreenWidth () - HOTKEYS_BIND, 250);
+					// Random key
+				SwinGame.DrawText ("Random key", Color.AntiqueWhite, SwinGame.ScreenWidth () - HOTKEYS_FUNC, 300);
+				SwinGame.DrawText (UtilityFunctions.RandomKey.ToString(), Color.White, SwinGame.ScreenWidth () - HOTKEYS_BIND, 300);
+					// Blue key
+				SwinGame.DrawText ("Blue key", Color.AntiqueWhite, SwinGame.ScreenWidth () - HOTKEYS_FUNC, 350);
+				SwinGame.DrawText (UtilityFunctions.BlueKey.ToString(), Color.White, SwinGame.ScreenWidth () - HOTKEYS_BIND, 350);
+					// Pink key
+				SwinGame.DrawText ("Pink key", Color.AntiqueWhite, SwinGame.ScreenWidth () - HOTKEYS_FUNC, 400);
+				SwinGame.DrawText (UtilityFunctions.PinkKey.ToString(), Color.White, SwinGame.ScreenWidth () - HOTKEYS_BIND, 400);
+					// Cheats key
+				SwinGame.DrawText ("Cheats key", Color.AntiqueWhite, SwinGame.ScreenWidth () - HOTKEYS_FUNC, 450);
+				SwinGame.DrawText (UtilityFunctions.CheatsKey.ToString(), Color.White, SwinGame.ScreenWidth () - HOTKEYS_BIND, 450);	
+					// maximise key
+				SwinGame.DrawText ("Fullscreen key", Color.AntiqueWhite, SwinGame.ScreenWidth () - HOTKEYS_FUNC, 500);
+				SwinGame.DrawText (UtilityFunctions.MaxKey.ToString(), Color.White, SwinGame.ScreenWidth () - HOTKEYS_BIND, 500);	
 		}
 
 	public static void DrawQuitMenu()
 	{
 		//Clears the Screen to Black
-			SwinGame.DrawText ("Quit Menu", Color.White, 50, 50);
-			SwinGame.DrawText ("Really Quit ?", Color.White, SwinGame.ScreenWidth()/2, 300);
-			SwinGame.DrawText ("Yes", Color.White, SwinGame.ScreenWidth()/2 - 70, 400);
-			SwinGame.DrawText ("No", Color.White, SwinGame.ScreenWidth()/2 + 70, 400);
+			SwinGame.DrawText ("Quit Menu", Color.White,  50, 50);
+			SwinGame.DrawTextLines("Really Quit ?", Color.White, Color.Transparent, GameResources.GameFont("ArialLarge"), FontAlignment.AlignCenter, 0, 200, SwinGame.ScreenWidth(), SwinGame.ScreenHeight());
+			SwinGame.DrawText ("Yes", Color.White, GameResources.GameFont("Menu"), SwinGame.ScreenWidth()/2 - 60, 405);
+			SwinGame.DrawText ("No", Color.White, GameResources.GameFont("Menu"), SwinGame.ScreenWidth()/2 + 80, 405);
 			SwinGame.DrawRectangle (Color.Red,false,SwinGame.ScreenWidth () / 2 - 70, 400, 50, 25);
 			SwinGame.DrawRectangle (Color.Red,false,SwinGame.ScreenWidth () / 2 + 70, 400, 50, 25);
 	}
