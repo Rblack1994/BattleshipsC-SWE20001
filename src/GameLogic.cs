@@ -14,6 +14,7 @@ static class GameLogic
 	{
 		//Opens a new Graphics Window("Battleships", 800, 600);
 			SwinGame.OpenGraphicsWindow("Battleships", 800, 600);
+
 		//Load Resources
 			GameResources.LoadResources();
 
@@ -23,6 +24,10 @@ static class GameLogic
 		do {
 				GameController.HandleUserInput();
 			GameController.DrawScreen();
+				if (SwinGame.KeyTyped (KeyCode.vk_F10))
+				{
+					SwinGame.ToggleFullScreen ();
+				}
 		} while (!(SwinGame.WindowCloseRequested() == true | GameController.CurrentState == GameState.Quitting));
 
 		SwinGame.StopMusic();
