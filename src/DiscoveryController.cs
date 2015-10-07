@@ -39,6 +39,11 @@ static class DiscoveryController
 			{
 				UtilityFunctions.ChangeBackground ();
 			}
+
+			if (SwinGame.KeyTyped (KeyCode.vk_s))
+			{
+				GameController.SaveGame ();
+			}
 	}
 
 	/// <summary>

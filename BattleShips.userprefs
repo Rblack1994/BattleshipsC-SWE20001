@@ -1,9 +1,23 @@
 ﻿<Properties StartupItem="BattleShips.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug-Windows|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="src\DeploymentController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="src\GameController.cs">
     <Files>
-      <File FileName="src\DeploymentController.cs" Line="5" Column="5" />
-      <File FileName="src\Model\SeaGrid.cs" Line="2" Column="2" />
+      <File FileName="src\GameLogic.cs" Line="1" Column="1" />
+      <File FileName="c:\Users\MasterDevious\Documents\GitHub\BattleshipsC-SWE20001\src\UtilityFunctions.cs" Line="1" Column="1" />
+      <File FileName="src\DeploymentController.cs" Line="1" Column="1" />
+      <File FileName="c:\Users\MasterDevious\Documents\GitHub\BattleshipsC-SWE20001\src\GameResources.cs" Line="1" Column="1" />
+      <File FileName="src\DiscoveryController.cs" Line="14" Column="2" />
+      <File FileName="src\EndingGameController.cs" Line="1" Column="1" />
+      <File FileName="src\Model\Player.cs" Line="65" Column="91" />
+      <File FileName="src\Model\BattleShipsGame.cs" Line="1" Column="1" />
+      <File FileName="src\GameController.cs" Line="142" Column="7" />
+      <File FileName="src\Model\SeaGrid.cs" Line="70" Column="54" />
+      <File FileName="src\Model\ISeaGrid.cs" Line="1" Column="1" />
+      <File FileName="src\Model\AIPlayer.cs" Line="1" Column="1" />
+      <File FileName="src\Model\AIEasyPlayer.cs" Line="67" Column="5" />
+      <File FileName="src\Model\AIOption.cs" Line="1" Column="1" />
+      <File FileName="src\Model\AIMediumPlayer.cs" Line="1" Column="1" />
+      <File FileName="src\Model\Tile.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

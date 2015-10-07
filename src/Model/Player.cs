@@ -113,6 +113,7 @@ public class Player : IEnumerable<Ship>
 	/// <returns>teh number of shots taken</returns>
 	public int Shots {
 		get { return _shots; }
+			set{ _shots = value; }
 	}
 
 	/// <summary>
@@ -121,6 +122,7 @@ public class Player : IEnumerable<Ship>
 	/// <value>successful hits</value>
 	public int Hits {
 		get { return _hits; }
+			set{ _hits = value; }
 	}
 
 	/// <summary>
@@ -130,6 +132,7 @@ public class Player : IEnumerable<Ship>
 	/// <returns>the number of shots that have missed ships</returns>
 	public int Missed {
 		get { return _misses; }
+			set{ _misses = value; }
 	}
 
 	/// <summary>

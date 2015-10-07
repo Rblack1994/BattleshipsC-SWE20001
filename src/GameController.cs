@@ -3,6 +3,7 @@ using Microsoft.VisualBasic;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 ////using System.Data;
 using System.Diagnostics;
 using SwinGameSDK;
@@ -96,6 +97,9 @@ public static class GameController
 
 		//create the players
 		switch (_aiSetting) {
+			case AIOption.Easy:
+				_ai = new AIEasyPlayer (_theGame);
+				break;
 			case AIOption.Medium:
 				_ai = new AIMediumPlayer(_theGame);
 				break;
@@ -116,9 +120,85 @@ public static class GameController
 		AddNewState(GameState.Deploying);
 	}
 
-	/// <summary>
-	/// Stops listening to the old game once a new game is started
-	/// </summary>
+
+		public static void SaveGame()
+		{
+			string fileinput = "";
+			FileStream file = null;
+			file = new FileStream(@"C:\Users\MasterDevious\Documents\GitHub\BattleshipsC-SWE20001\savegame.txt",FileMode.Open);
+			StreamWriter sw = new StreamWriter(file);
+			//save difficulty
+			sw.WriteLine(AiGameSetting ());
+			sw.WriteLine (_human.Shots);
+			sw.WriteLine (_human.Hits);
+			sw.WriteLine (_human.Missed);
+			//save player maps
+			for (int i = 0; i < 10; i++)
+			{
+				for (int j = 0; j < 10; j++)
+				{
+					if (_human.PlayerGrid [j,i] == TileView.Sea)
+					{
+						fileinput += "1";
+					}
+					else if (_human.PlayerGrid[j,i] == TileView.Hit)
+					{
+						fileinput += "2";
+					}
+					else if (_human.PlayerGrid [j,i] == TileView.Ship)
+					{
+						fileinput += "3";
+					}
+					else
+					{
+						fileinput += "4";
+					}
+				}
+				sw.WriteLine (fileinput);
+				fileinput = "";
+			}
+			sw.WriteLine ("");
+			//save enemy maps
+			for (int i = 0; i < 10; i++)
+			{
+				for (int j = 0; j < 10; j++)
+				{
+					if (_ai.PlayerGrid [j,i] == TileView.Sea)
+					{
+						fileinput += "1";
+					}
+					else if (_ai.PlayerGrid[j,i] == TileView.Hit)
+					{
+						fileinput += "2";
+					}
+					else if (_ai.PlayerGrid [j,i] == TileView.Ship)
+					{
+						fileinput += "3";
+					}
+					else
+					{
+						fileinput += "4";
+					}
+				}
+				sw.WriteLine (fileinput);
+				fileinput = "";
+			}
+
+			sw.Close();
+			file.Close();
+		}
+
+
+		public static void LoadGame()
+		{
+			_theGame = new BattleShipsGame ();
+			//load ai setting
+			//load player
+			_ai.PlayerGrid.Changed += GridChanged;
+			_theGame.AttackCompleted += AttackCompleted;
+
+			AddNewState (GameState.Discovering);
+		}
 
 	private static void EndGame()
 	{
